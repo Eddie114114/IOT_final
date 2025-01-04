@@ -50,7 +50,8 @@
 - speech_recognition
 
 ### 2. 安裝必要套件
-opencv安裝參考以下網址
+-opencv安裝參考以下網址
+
 [opencv](https://hackmd.io/HV6hQ2PHSiWlrRsfxC10SA)
 
 tensorflow無法使用pip安裝，從以下網址下載python版本對應的wheel:
