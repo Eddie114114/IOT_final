@@ -3,13 +3,13 @@
 ## 目錄
 1. [簡介](#簡介)
 2. [作品圖片及影片](#作品圖片及影片)
-3. [使用設備](#使用設備)
-4. [軟體安裝](#軟體安裝)
-5. [訓練模型及使用](#訓練模型及使用)
-6. [語音輸入及輸出](#語音輸入及輸出)
-7. [串接語言模型](#串接語言模型)
-8. [整合函式](#整合函式)
-9. [設定按鈕](#設定按鈕)
+3. [Step1: 使用設備](#Step1-使用設備)
+4. [Step2: 軟體安裝](#Step2-軟體安裝)
+5. [Step3: 訓練模型及使用](#Step3-訓練模型及使用)
+6. [Step4: 語音輸入及輸出](#Step4-語音輸入及輸出)
+7. [Step5: 串接語言模型](#Step5-串接語言模型)
+8. [Step6: 整合函式](#Step6-整合函式)
+9. [Step7: 設定按鈕](#Step7-設定按鈕)
 10. [可以改善的點](#可以改善的點)
 
 ---
@@ -29,7 +29,7 @@
 
 ---
 
-## 使用設備
+## Step1: 使用設備
 - raspberry pi 4B
 - 鏡頭
 - 麥克風
@@ -40,7 +40,7 @@
 
 ---
 
-## 軟體安裝
+## Step2: 軟體安裝
 ### 1. 環境設定
 - Raspberry Pi作業系統
 - Python 版本：3.7
@@ -53,7 +53,7 @@
 opencv安裝參考以下網址  
 [https://hackmd.io/HV6hQ2PHSiWlrRsfxC10SA](https://hackmd.io/HV6hQ2PHSiWlrRsfxC10SA)  
 
-tensorflow無法使用pip安裝，從以下網址下載python版本對應的wheel，python3.7使用tensorflow-2.4.0-cp37-none-linux_armv7l.whl  
+tensorflow無法使用pip安裝，從以下網址下載python版本對應的wheel，python3.7、32位元使用tensorflow-2.4.0-cp37-none-linux_armv7l.whl  
 [https://github.com/lhelontra/tensorflow-on-arm/releases](https://github.com/lhelontra/tensorflow-on-arm/releases)  
 
 下載完成之後直執行以下指令:  
@@ -77,26 +77,34 @@ tensorflow無法使用pip安裝，從以下網址下載python版本對應的whee
 </code>
 </pre>
 
----
-
-## 訓練模型及使用
-
----
-
-##語音輸入及輸出
-
----
-
-##串接語言模型
+樹莓派執行speech_recognition時可能遇到錯誤，需要安裝pyaudio:
+<pre>
+<code>
+ pip3 install pyaudio
+</code>
+</pre>
 
 ---
 
-##整合函式
+## Step3: 訓練模型及使用
+
 
 ---
 
-##設定按鈕
+## Step4: 語音輸入及輸出
 
 ---
 
-##可以改善的點
+## Step5: 串接語言模型
+
+---
+
+## Step6: 整合函式
+
+---
+
+## Step7: 設定按鈕
+
+---
+
+## 可以改善的點
