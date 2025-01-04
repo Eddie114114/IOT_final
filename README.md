@@ -90,16 +90,7 @@ tensorflow無法使用pip安裝，從以下網址下載python版本對應的whee
 
 ## Step3: 訓練模型及使用
 ### 訓練(不在樹莓派上執行，會很久!!)
-使用 FER2013 資料集來訓練CNN卷積神經網路，可以辨識人臉的七種情緒：
-- Angry
-- Disgust
-- Fear
-- Happy
-- Neutral
-- Sad
-- Surprise  
-
-下載連結如下:  
+使用 FER2013 資料集來訓練CNN卷積神經網路，可以辨識人臉的七種情緒，下載連結如下:  
 [https://www.kaggle.com/datasets/msambare/fer2013](https://www.kaggle.com/datasets/msambare/fer2013)  
 
 使用Python 3.7 及以下套件：
@@ -109,8 +100,9 @@ tensorflow無法使用pip安裝，從以下網址下載python版本對應的whee
 - seaborn
 - sklearn
 
-1. 程式使用 `ImageDataGenerator` 進行數據增強。
-2. 模型結構包括四層卷積層和兩層全連接層，搭配 Dropout 防止過擬合。
+執行trainEmotionModel.py進行模型訓練、測試及查看結果  
+1. 使用 `ImageDataGenerator` 進行數據增強。
+2. 模型結構包括四層卷積層和兩層全連接層，並且搭配 Dropout 防止過擬合。
 3. 使用 `Adam` 優化器，損失函數為 `categorical_crossentropy`。
 4. 設定 `epochs=50`，訓練過程會自動保存最佳模型。
 
@@ -124,8 +116,7 @@ tensorflow無法使用pip安裝，從以下網址下載python版本對應的whee
     - 訓練損失和準確率隨著訓練次數的增多而收斂。
     - 驗證曲線用於檢測過擬合。
 - **混淆矩陣**：
-    - 顯示模型在各情緒類別上的分類效果。
-參考trainEmotionModel.py
+    - 顯示模型在各情緒類別上的分類效果。  
 
 ### 使用
 使用convert_h5_to_tflite.py將模型轉換成tflite檔案，tflite在樹莓派上可以有更好的效率  
