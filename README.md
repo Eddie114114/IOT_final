@@ -54,13 +54,12 @@
 ### 2. 安裝時可能遇到的問題
 opencv安裝參考以下網址  
 [https://hackmd.io/HV6hQ2PHSiWlrRsfxC10SA](https://hackmd.io/HV6hQ2PHSiWlrRsfxC10SA)  
-
+  
 tensorflow無法使用pip安裝，從以下網址下載python版本對應的wheel，python3.7、32位元使用tensorflow-2.4.0-cp37-none-linux_armv7l.whl  
 [https://github.com/lhelontra/tensorflow-on-arm/releases](https://github.com/lhelontra/tensorflow-on-arm/releases)  
-
+  
 下載完成之後直執行以下指令:  
  - cd進入wheel文件所在資料夾
-
 <pre>
 <code>
  cd /home/pi/Downloads
@@ -78,7 +77,7 @@ tensorflow無法使用pip安裝，從以下網址下載python版本對應的whee
  pip3 install tensorflow-2.4.0-cp37-none-linux_armv7l.whl
 </code>
 </pre>
-
+  
 樹莓派執行speech_recognition時可能遇到錯誤，需要安裝pyaudio:
 <pre>
 <code>
@@ -92,29 +91,29 @@ tensorflow無法使用pip安裝，從以下網址下載python版本對應的whee
 ### 訓練(不在樹莓派上執行，會很久!!)
 使用 FER2013 資料集來訓練CNN卷積神經網路，可以辨識人臉的七種情緒，下載連結如下:  
 [https://www.kaggle.com/datasets/msambare/fer2013](https://www.kaggle.com/datasets/msambare/fer2013)  
-
+  
 使用Python 3.7 及以下套件：
 - keras
 - numpy
 - matplotlib
 - seaborn
 - sklearn
-
+  
 執行trainEmotionModel.py進行模型訓練、測試及查看結果  
->模型訓練
->1. 使用 `ImageDataGenerator` 進行數據增強。
->2. 模型結構包括四層卷積層和兩層全連接層，並且搭配 Dropout 防止過擬合。
->3. 使用 `Adam` 優化器，損失函數為 `categorical_crossentropy`。
->4. 設定 `epochs=50`，訓練過程會自動保存最佳模型。
+模型訓練
+1. 使用 `ImageDataGenerator` 進行數據增強。
+2. 模型結構包括四層卷積層和兩層全連接層，並且搭配 Dropout 防止過擬合。
+3. 使用 `Adam` 優化器，損失函數為 `categorical_crossentropy`。
+4. 設定 `epochs=50`，訓練過程會自動保存最佳模型。
 
->測試
->1. 測試數據通過生成器導入模型。
->2. 使用混淆矩陣（Confusion Matrix）可視化分類準確度。
->3. 隨機顯示測試圖片及其預測結果。
+測試
+1. 測試數據通過生成器導入模型。
+2. 使用混淆矩陣（Confusion Matrix）可視化分類準確度。
+3. 隨機顯示測試圖片及其預測結果。
 
->結果分析
->- 訓練損失和準確率隨著訓練次數的增多而收斂。
->- 驗證曲線用於檢測過擬合。
+結果分析
+- 訓練損失和準確率隨著訓練次數的增多而收斂。
+- 驗證曲線用於檢測過擬合。
 
 ### 使用
 使用convert_h5_to_tflite.py將模型轉換成tflite檔案，tflite在樹莓派上可以有更好的效率  
