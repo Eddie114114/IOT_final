@@ -11,6 +11,7 @@
 8. [Step6: 整合函式](#Step6-整合函式)
 9. [Step7: 設定按鈕](#Step7-設定按鈕)
 10. [可以改善的點](#可以改善的點)
+11. [參考資料](#參考資料)
 
 ---
 
@@ -43,13 +44,14 @@
 ## Step2: 軟體安裝
 ### 1. 環境設定
 - Raspberry Pi作業系統
-- Python 版本：3.7
+- Python 3.7
 - opencv
+- openai
 - tensorflow 2.4.0
 - gtts
 - speech_recognition
 
-### 2. 安裝必要套件
+### 2. 安裝時可能遇到的問題
 opencv安裝參考以下網址  
 [https://hackmd.io/HV6hQ2PHSiWlrRsfxC10SA](https://hackmd.io/HV6hQ2PHSiWlrRsfxC10SA)  
 
@@ -87,6 +89,29 @@ tensorflow無法使用pip安裝，從以下網址下載python版本對應的whee
 ---
 
 ## Step3: 訓練模型及使用
+### 訓練(不在樹莓派上執行，會很久!!)
+使用 FER2013 資料集來訓練CNN卷積神經網路，可以辨識人臉的七種情緒：
+- Angry
+- Disgust
+- Fear
+- Happy
+- Neutral
+- Sad
+- Surprise
+下載連結如下:  
+[https://www.kaggle.com/datasets/msambare/fer2013](https://www.kaggle.com/datasets/msambare/fer2013)  
+
+使用Python 3.7 及以下套件：
+- keras
+- numpy
+- matplotlib
+- seaborn
+- sklearn
+
+參考trainEmotionModel.py
+
+### 使用
+使用convert_h5_to_tflite.py將模型轉換成tflite檔案，tflite在樹莓派上可以有更好的效率  
 
 
 ---
@@ -108,3 +133,7 @@ tensorflow無法使用pip安裝，從以下網址下載python版本對應的whee
 ---
 
 ## 可以改善的點
+
+---
+
+## 參考資料
