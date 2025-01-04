@@ -109,6 +109,22 @@ tensorflow無法使用pip安裝，從以下網址下載python版本對應的whee
 - seaborn
 - sklearn
 
+1. 程式使用 `ImageDataGenerator` 進行數據增強。
+2. 模型結構包括四層卷積層和兩層全連接層，搭配 Dropout 防止過擬合。
+3. 使用 `Adam` 優化器，損失函數為 `categorical_crossentropy`。
+4. 設定 `epochs=50`，訓練過程會自動保存最佳模型。
+
+測試
+1. 測試數據通過生成器導入模型。
+2. 使用混淆矩陣（Confusion Matrix）可視化分類準確度。
+3. 隨機顯示測試圖片及其預測結果。
+
+結果分析
+- **訓練和驗證曲線**：
+    - 訓練損失和準確率隨著訓練次數的增多而收斂。
+    - 驗證曲線用於檢測過擬合。
+- **混淆矩陣**：
+    - 顯示模型在各情緒類別上的分類效果。
 參考trainEmotionModel.py
 
 ### 使用
