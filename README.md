@@ -7,7 +7,7 @@
 4. [Step2: 軟體安裝](#step2-軟體安裝)
 5. [Step3: 訓練模型及使用](#step3-訓練模型及使用)
 6. [Step4: 語音輸入及輸出](#step4-語音輸入及輸出)
-7. [Step5: 串接語言模型](#step5-串接語言模型)
+7. [Step5: 串接語言模型，使用 GPT-3.5](#step5-串接語言模型，使用 GPT-3.5)
 8. [Step6: 整合函式](#step6-整合函式)
 9. [Step7: 設定按鈕](#step7-設定按鈕)
 10. [可以改善的點](#可以改善的點)
@@ -140,13 +140,11 @@ OpenCV 提供多種預訓練的圖形辨識模型，此處使用臉部辨識模�
 
 ---
 
-## Step5: 串接語言模型
+## Step5: 串接語言模型，使用 GPT-3.5
 
 ### 前置準備
-1. 於 OpenAI 官網申請 API key：
-[https://platform.openai.com/settings/organization/api-keys](https://platform.openai.com/settings/organization/api-keys)  
-
-可再 Usage 頁面查看使用量  
+1. 於 OpenAI 官網申請 API key ，可在 Usage 頁面查看使用量：
+[https://platform.openai.com/settings/organization/api-keys](https://platform.openai.com/settings/organization/api-keys)    
 
 2. 在專案目錄下建立 `.env` 文件，設定剛剛申請的 OpenAI API 金鑰：
 
@@ -155,25 +153,25 @@ OPENAI_API_KEY = your_api_key
 ```
 
 ### 回應生成
-根據用戶提供的情緒和文字生成回應：
-- 若超出能力範圍，回應 "呱呱，我是笨鵝"。
+可以在 `system role` 設定阿鵝的人設(或鵝設?)和回答方式、範圍等等  
+此處設定阿鵝根據用戶提供的情緒和文字生成回應，如果超出能力範圍，阿鵝會回應 "呱呱，我是笨鵝"
 
-### google gemini
-
+>#### google gemini
+>
 
 ---
 
 ## Step6: 整合函式
 
-### 多執行緒處理
-- 使用 `threading` 模組讓語音輸入與情緒檢測並行執行。
-- 兩個功能完成後進行回應生成。
+### 使用 `main.py` 進行多執行緒處理
+- 使用 `threading` 模組讓語音輸入與情緒檢測能並行執行
+- 兩個執行緒完成後才生成回應
 
-### 整合流程
-1. 使用語音辨識接收使用者語音。
-2. 同時進行情緒偵測。
-3. 將結果傳遞至 GPT 模型生成回應。
-4. 將回應轉換為語音並播放。
+### 整合流程如下
+1. 使用語音辨識接收使用者語音
+2. 同時進行情緒偵測
+3. 將二者結果傳遞至 GPT 模型生成回應
+4. 將回應轉換為語音並播放
 
 ---
 
