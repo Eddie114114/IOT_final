@@ -2,10 +2,10 @@ import openai
 from dotenv import load_dotenv
 import os
 
-# 加载 .env 文件
+# 加載.env
 load_dotenv()
 
-# 从环境变量中获取 API Key
+# 從env抓API Key
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
 if not openai_api_key:
