@@ -59,7 +59,10 @@ tensorflow無法使用pip安裝，從以下網址下載python版本對應的whee
 下載完成之後直執行以下指令:  
  - cd進入wheel文件所在資料夾  
 ```
-cd /home/pi/Downloads  
+cd /home/pi/Downloads
+
+
+
  - 可能需要更新pip  
 ```
 python3 -m pip install --upgrade pip  
