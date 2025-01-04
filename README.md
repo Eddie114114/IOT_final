@@ -55,12 +55,13 @@
 
 ### 2. 安裝時可能遇到的問題
 
-#### opencv 安裝參考
+#### opencv 安裝參考此網址
 [https://hackmd.io/HV6hQ2PHSiWlrRsfxC10SA](https://hackmd.io/HV6hQ2PHSiWlrRsfxC10SA)  
 
 #### tensorflow 安裝
-tensorflow可能無法使用pip安裝，從以下網址下載 python 版本對應的 wheel：
+tensorflow 可能無法使用 pip 安裝，從以下網址下載 python 版本對應的 wheel：
 [https://github.com/lhelontra/tensorflow-on-arm/releases](https://github.com/lhelontra/tensorflow-on-arm/releases)  
+
 python3.7、32位元使用 tensorflow-2.4.0-cp37-none-linux_armv7l.whl  
 
 下載完成後執行以下指令：
@@ -93,13 +94,13 @@ pip3 install pyaudio
 >- **Angry**, **Disgust**, **Fear**, **Happy**, **Neutral**, **Sad**, **Surprise**  
 
 >#### 訓練
->- 使用 `ImageDataGenerator` 進行資料增強和多樣化
->- 模型結構包括 4 層卷積層和 2 層全連接層，並搭配使用 Dropout 防止過擬合
->- 優化器：Adam，訓練次數：50 Epoch
+>使用 `ImageDataGenerator` 進行資料增強和多樣化  
+>模型結構包括 4 層卷積層和 2 層全連接層，並搭配使用 Dropout 防止過擬合  
+>優化器：Adam，訓練次數：50 Epoch  
 
 >#### 進行測試
->- 使用混淆矩陣評估分類準確度
->- 隨機顯示測試圖片和預測結果
+>使用混淆矩陣評估分類準確度  
+>隨機顯示測試圖片和預測結果  
 
 ### 執行 `convert_h5_to_tflite.py` 轉換模型
 將 h5 模型轉換為 tflite 格式以提升在樹莓派上的執行效率
