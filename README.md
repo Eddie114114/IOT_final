@@ -59,8 +59,9 @@
 [https://hackmd.io/HV6hQ2PHSiWlrRsfxC10SA](https://hackmd.io/HV6hQ2PHSiWlrRsfxC10SA)  
 
 #### tensorflow 安裝
-從以下網址下載 python 版本對應的 wheel：
+tensorflow可能無法使用pip安裝，從以下網址下載 python 版本對應的 wheel：
 [https://github.com/lhelontra/tensorflow-on-arm/releases](https://github.com/lhelontra/tensorflow-on-arm/releases)  
+python3.7、32位元使用 tensorflow-2.4.0-cp37-none-linux_armv7l.whl  
 
 下載完成後執行以下指令：
 
@@ -71,7 +72,7 @@ pip3 install tensorflow-2.4.0-cp37-none-linux_armv7l.whl
 ```
 
 #### speech_recognition 問題
-樹莓派執行 speech_recognition 時需要安裝 pyaudio：
+樹莓派執行 speech_recognition 時可能遇到錯誤，需要安裝 pyaudio：
 
 ```bash
 pip3 install pyaudio
@@ -81,44 +82,50 @@ pip3 install pyaudio
 
 ## Step3: 訓練模型及使用
 
-### 訓練模型 (不建議在樹莓派上執行)
+### 執行 `trainEmotionModel.py` 訓練模型 (不建議在樹莓派上執行)
+請確保資料集檔案名稱和位置正確
 
-#### 資料集
-使用 FER2013 資料集進行訓練：
-[https://www.kaggle.com/datasets/msambare/fer2013](https://www.kaggle.com/datasets/msambare/fer2013)  
+>#### 資料集
+>使用 FER2013 資料集進行訓練：
+>[https://www.kaggle.com/datasets/msambare/fer2013](https://www.kaggle.com/datasets/msambare/fer2013)  
+>FER2013中分為訓練集和測試集  
+>最終模型將可以辨識人臉的七種情緒，包括：
+>- **Angry**, **Disgust**, **Fear**, **Happy**, **Neutral**, **Sad**, **Surprise**  
 
-#### 訓練細節
-- 使用 `ImageDataGenerator` 進行資料增強
-- 模型結構包括 4 層卷積層和 2 層全連接層，並搭配 Dropout 防止過擬合
-- 優化器：Adam
-- 訓練次數：50 Epoch
+>#### 訓練
+>- 使用 `ImageDataGenerator` 進行資料增強和多樣化
+>- 模型結構包括 4 層卷積層和 2 層全連接層，並搭配使用 Dropout 防止過擬合
+>- 優化器：Adam，訓練次數：50 Epoch
 
-#### 測試方法
-- 使用混淆矩陣評估分類準確度
-- 隨機顯示測試圖片和預測結果
+>#### 進行測試
+>- 使用混淆矩陣評估分類準確度
+>- 隨機顯示測試圖片和預測結果
 
-#### 使用 tflite 模型
-將模型轉換為 tflite 格式以提升效率：
-- 執行 `convert_h5_to_tflite.py` 轉換模型
-- 使用 `emotionDetection.py` 進行人臉檢測和情緒分類
+### 執行 `convert_h5_to_tflite.py` 轉換模型
+將 h5 模型轉換為 tflite 格式以提升在樹莓派上的執行效率
+
+### 使用 `emotionDetection.py` 進行人臉檢測和情緒分類
+- 人臉檢測： 使用 OpenCV 提供的 Haar Cascade 模型來檢測影像中的人臉位置
+- 情緒分類： 使用 TensorFlow Lite 推理模型對人臉影像進行分類。
+- 多次檢測統計： 收集過程中多次檢測的結果，返回最常見的情緒。
+- 設定定時關閉
 
 ---
 
 ## Step4: 語音輸入及輸出
 
 ### 1. 語音輸出 (Text-to-Speech)
-透過 Google TTS 將輸入文字轉為語音，並播放：
-
-#### 功能函式
-- **speakChinese(text)**
-  - 將文字轉為語音並播放，播放後自動刪除音檔。
+1. 利用 gTTS 將文字轉為繁體中文語音。
+2. 儲存語音檔為 MP3 格式並播放。
+3. 播放完成後自動刪除 MP3 檔案。
+- 異常處理：當語音合成或播放過程發生錯誤，會打印錯誤資訊。
 
 ### 2. 語音輸入 (Speech-to-Text)
-透過 Google Speech Recognition 將語音轉為文字：
-
-#### 功能函式
-- **speechToText()**
-  - 啟動麥克風錄音，調整環境噪音，返回辨識的文字結果。
+1. 啟動麥克風，調整環境噪音以提升辨識準確度。
+2. 播放提示音（"呱呱"）提示使用者開始說話。
+3. 記錄使用者語音，並將其轉換為文字。
+4. 返回辨識的文字結果。
+- 異常處理：當無法辨識語音或與 Google STT 服務的連線發生問題，會打印錯誤資訊。
 
 ---
 
@@ -140,6 +147,9 @@ pip install openai python-dotenv
 ```plaintext
 OPENAI_API_KEY=your_api_key_here
 ```
+
+### google gemini
+
 
 ---
 
@@ -164,7 +174,7 @@ OPENAI_API_KEY=your_api_key_here
    - 偵測按鈕按下時執行指定程式。
 
 2. **音效提醒**
-   - 播放提示音 `letsPlay.mp3`。
+   - 當程式啟動時，播放音效文件 letsPlay.mp3 以提醒用戶
 
 3. **防抖處理**
    - 避免按鈕重複觸發。
