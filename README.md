@@ -58,8 +58,20 @@ tensorflow無法使用pip安裝，從以下網址下載python版本對應的whee
 
 下載完成之後直執行以下指令:  
  - cd進入wheel文件所在資料夾
-    cd /home/pi/Downloads
+<pre>
+<code>
+ cd /home/pi/Downloads
+</code>
+</pre>
  - 可能需要升級pip
-    python3 -m pip install --upgrade pip  
+<pre>
+<code>
+ python3 -m pip install --upgrade pip  
+</code>
+</pre>
  - 執行下載
-    pip3 install tensorflow-2.4.0-cp37-none-linux_armv7l.whl
+<pre>
+<code>
+ pip3 install tensorflow-2.4.0-cp37-none-linux_armv7l.whl
+</code>
+</pre>
