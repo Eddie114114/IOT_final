@@ -83,7 +83,7 @@ pip3 install pyaudio
 
 ## Step3: 訓練模型及使用
 
-### 執行 `trainEmotionModel.py` 訓練模型 (不建議在樹莓派上執行)
+### 執行 `trainEmotionModel.py` 訓練模型並測試 (不建議在樹莓派上執行，筆電跑了兩天多)
 請確保資料集檔案名稱和位置正確
 
 >#### 資料集
@@ -93,7 +93,7 @@ pip3 install pyaudio
 >最終模型將可以辨識人臉的七種情緒，包括：
 >- **Angry**, **Disgust**, **Fear**, **Happy**, **Neutral**, **Sad**, **Surprise**  
 
->#### 訓練
+>#### 進行訓練
 >使用 `ImageDataGenerator` 進行資料增強和多樣化  
 >模型結構包括 4 層卷積層和 2 層全連接層，並搭配使用 Dropout 防止過擬合  
 >優化器：Adam，訓練次數：50 Epoch  
@@ -106,10 +106,18 @@ pip3 install pyaudio
 將 h5 模型轉換為 tflite 格式以提升在樹莓派上的執行效率
 
 ### 使用 `emotionDetection.py` 進行人臉檢測和情緒分類
-- 人臉檢測： 使用 OpenCV 提供的 Haar Cascade 模型來檢測影像中的人臉位置
-- 情緒分類： 使用 TensorFlow Lite 推理模型對人臉影像進行分類。
-- 多次檢測統計： 收集過程中多次檢測的結果，返回最常見的情緒。
-- 設定定時關閉
+OpenCV 提供多種預訓練的圖形辨識模型，此處使用臉部辨識模型 `data/haarcascades/haarcascade_frontalface_default.xml`   
+
+從以下網址下載，並確保檔案儲存名稱和位置正確：
+[https://github.com/opencv/opencv/blob/4.x/data/haarcascades/haarcascade_frontalface_default.xml](https://github.com/opencv/opencv/blob/4.x/data/haarcascades/haarcascade_frontalface_default.xml)  
+
+用雲端或隨身碟將 tflite 格式的情緒辨識模型放進樹莓派，並確保檔案儲存名稱和位置正確
+
+>#### 程式邏輯
+>先使用 OpenCV 提供的 Haar Cascade 模型來定位影像中的人臉位置  
+>再使用剛剛訓練好的模型對人臉影像做進一步的情緒分析
+>鏡頭設定五秒鐘的定時關閉，大約是說一句簡單的話的時間  
+>過程中會多次收集檢測到的結果，回傳最常見的情緒
 
 ---
 
@@ -132,10 +140,6 @@ pip3 install pyaudio
 
 ## Step5: 串接語言模型
 
-### 回應生成
-根據用戶提供的情緒和文字生成回應：
-- 若超出能力範圍，回應 "呱呱，我是笨鵝"。
-
 ### 前置準備
 1. 安裝依賴：
 
@@ -148,6 +152,10 @@ pip install openai python-dotenv
 ```plaintext
 OPENAI_API_KEY=your_api_key_here
 ```
+
+### 回應生成
+根據用戶提供的情緒和文字生成回應：
+- 若超出能力範圍，回應 "呱呱，我是笨鵝"。
 
 ### google gemini
 
