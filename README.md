@@ -140,9 +140,9 @@ OpenCV 提供多種預訓練的圖形辨識模型，此處使用臉部辨識模�
 
 ---
 
-## Step5: 串接語言模型，使用 GPT-3.5
+## Step5: 串接語言模型
 
-### 前置準備
+### 前置準備，使用 GPT-3.5
 1. 於 OpenAI 官網申請 API key ，可在 Usage 頁面查看使用量：
 [https://platform.openai.com/settings/organization/api-keys](https://platform.openai.com/settings/organization/api-keys)    
 
