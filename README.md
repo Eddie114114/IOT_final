@@ -96,7 +96,7 @@ pip3 install pyaudio
 >#### 進行訓練
 >使用 `ImageDataGenerator` 進行資料增強和多樣化  
 >模型結構包括 4 層卷積層和 2 層全連接層，並搭配使用 Dropout 防止過擬合  
->優化器：Adam，訓練次數：50 Epoch  
+>使用優化器Adam，且訓練次數為50 Epoch  
 
 >#### 進行測試
 >使用混淆矩陣評估分類準確度  
@@ -108,8 +108,7 @@ pip3 install pyaudio
 ### 使用 `emotionDetection.py` 進行人臉檢測和情緒分類
 OpenCV 提供多種預訓練的圖形辨識模型，此處使用臉部辨識模型 `data/haarcascades/haarcascade_frontalface_default.xml`   
 
-從以下網址下載，並確保檔案儲存名稱和位置正確：
-[https://github.com/opencv/opencv/blob/4.x/data/haarcascades/haarcascade_frontalface_default.xml](https://github.com/opencv/opencv/blob/4.x/data/haarcascades/haarcascade_frontalface_default.xml)  
+從以下網址下載，並確保檔案儲存名稱和位置正確：[https://github.com/opencv/opencv/blob/4.x/data/haarcascades/haarcascade_frontalface_default.xml](https://github.com/opencv/opencv/blob/4.x/data/haarcascades/haarcascade_frontalface_default.xml)  
 
 用雲端或隨身碟將 tflite 格式的情緒辨識模型放進樹莓派，並確保檔案儲存名稱和位置正確
 
