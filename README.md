@@ -8,8 +8,8 @@
 5. [訓練模型及使用](#訓練模型及使用)
 6. [語音輸入及輸出](#語音輸入及輸出)
 7. [串接語言模型](#串接語言模型)
-8. [設定按鈕](#設定按鈕)
-9. [整合及執行](#整合及執行)
+8. [整合函式](#整合函式)
+9. [設定按鈕](#設定按鈕)
 10. [可以改善的點](#可以改善的點)
 
 ---
@@ -53,7 +53,7 @@
 opencv安裝參考以下網址  
 [https://hackmd.io/HV6hQ2PHSiWlrRsfxC10SA](https://hackmd.io/HV6hQ2PHSiWlrRsfxC10SA)  
 
-tensorflow無法使用pip安裝，從以下網址下載python版本對應的wheel，python3.7使用tensorflow-2.4.0-cp37-none-linux_armv7l.whl
+tensorflow無法使用pip安裝，從以下網址下載python版本對應的wheel，python3.7使用tensorflow-2.4.0-cp37-none-linux_armv7l.whl  
 [https://github.com/lhelontra/tensorflow-on-arm/releases](https://github.com/lhelontra/tensorflow-on-arm/releases)  
 
 下載完成之後直執行以下指令:  
@@ -77,3 +77,26 @@ tensorflow無法使用pip安裝，從以下網址下載python版本對應的whee
 </code>
 </pre>
 
+---
+
+## 訓練模型及使用
+
+---
+
+##語音輸入及輸出
+
+---
+
+##串接語言模型
+
+---
+
+##整合函式
+
+---
+
+##設定按鈕
+
+---
+
+##可以改善的點
