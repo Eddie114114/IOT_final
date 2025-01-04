@@ -5,10 +5,6 @@ import speech_recognition as sr
 
 # 使用 Google TTS 播放語音
 def speakChinese(text):
-    """
-    接收文字並轉換為語音播放。
-    :param text: 要轉換為語音的文字
-    """
     try:
         print(f"語音輸出內容：{text}")
         tts = gTTS(text, lang='zh-TW')  # 使用繁體中文
@@ -27,10 +23,6 @@ def speakChinese(text):
 
 # 使用 Google STT 將語音轉換為文字
 def speechToText():
-    """
-    將語音輸入轉換為文字。
-    """
-    # 創建 SpeechRecognition 的 recognizer 實例
     recognizer = sr.Recognizer()
 
     # 使用默認麥克風作為音頻輸入
