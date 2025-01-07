@@ -23,8 +23,7 @@
 ## 作品圖片及影片
 
 ### 照片
-![成果照片]([model/IMG_1196.HEIC](https://github.com/Eddie114114/IOT_final/blob/main/model/IMG_1196.HEIC))
-
+![成果照片](https://github.com/Eddie114114/IOT_final/blob/main/picture/IMG_1196.jpg)
 ### 影片
 [![成果影片](https://img.youtube.com/vi/UhY2tnBe6VU/0.jpg)](https://youtube.com/shorts/UhY2tnBe6VU?si=Nw5qJbpsWfEdjHYD)  
 點擊圖片觀看完整影片。
