@@ -23,7 +23,7 @@
 ## 作品圖片及影片
 
 ### 照片
-![成果照片](https://drive.google.com/file/d/1C5Gd61JxwuGR98YHHcejBS_WONemOF2a/view)
+![成果照片](model/IMG_1196.HEIC)
 
 ### 影片
 [![成果影片](https://img.youtube.com/vi/UhY2tnBe6VU/0.jpg)](https://youtube.com/shorts/UhY2tnBe6VU?si=Nw5qJbpsWfEdjHYD)  
