@@ -289,7 +289,9 @@ GPIO.setup(buttonPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # 設定按鈕為輸�
 ```
 
 4. 串接按鈕
+![pin圖](https://github.com/Eddie114114/IOT_final/blob/main/picture/pi)  
 
+依照程式設定串接杜邦線，一條接到 `GPIO.BOARD` 編號8，另一條接到 `GPIO.BOARD` 編號6(接地)，兩條線的另外一端接到輕觸按鈕
 
 ---
 
@@ -301,6 +303,5 @@ GPIO.setup(buttonPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # 設定按鈕為輸�
 ---
 
 ## 參考資料
-- [opencv 安裝指引](https://hackmd.io/HV6hQ2PHSiWlrRsfxC10SA)
-- [tensorflow wheel 下載](https://github.com/lhelontra/tensorflow-on-arm/releases)
-- [FER2013 資料集](https://www.kaggle.com/datasets/msambare/fer2013)
+- (https://hackmd.io/HV6hQ2PHSiWlrRsfxC10SA)
+- (https://www.tinkercad.com/dashboard)
