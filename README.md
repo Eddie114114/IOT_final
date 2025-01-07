@@ -219,35 +219,30 @@ OPENAI_API_KEY = your_api_key
 >```
 >
 >4. 更改 `answerLLM.py`
+>在開頭加上  
 >```bash
 >config = ConfigParser()
 >config.read("config.ini")
 >
 >llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash-latest", google_api_key=config["Gemini"]["API_KEY"])
 >```
->更改gptResponse函式
+>更改gptResponse函式  
 >```bash
 >if emotion is None or user_input is None:
-        return "呱呱，我是笨鵝"
-
-    system_message = (
-        f"你是一隻鵝，精通心理學，善於傾聽，個性溫暖且幽默。"
-        f"用戶現在感到{emotion}，請給予簡短的回應來應對用戶的情緒，"
-        f"只有1句話，不超過十五字，不要表情符號。"
-        f"如果用戶的問題與你的專業無關，只能回答'呱呱，我是笨鵝'，不能有其他額外的回應。"
-    )
-
-    try:
-        # 使用 Gemini 模型生成响应
-        response = gemini.generate_text(
-            prompt=f"{system_message}\n用戶: {user_input}\n鵝:",
-            model="models/chat-bison-001",  # 请根据实际可用的模型名称进行替换
-            temperature=1.5,
-            max_output_tokens=50  # 设置生成的最大字数，可根据需要调整
-        )
-        return response.result
-    except Exception as e:
-        return f"抱歉，生成回應時出現錯誤：{e}"
+>        return "呱呱，我是笨鵝"
+>
+>    system_message = (
+>        #此處設定阿鵝的人設(或鵝設?)和回答方式、範圍
+>    )
+>
+>    try:
+>        response = llm.invoke([
+>            ("system", system_message),
+>            ("user", user_input)
+>        ])
+>        return response.content
+>    except Exception as e:
+>        return f"抱歉，生成回應時出現錯誤：{e}"
 >```
 
 ---
