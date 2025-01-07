@@ -280,7 +280,7 @@ import threading
 pip install RPi.GPIO
 ```
 
-4. 設定樹莓派的腳位
+3. 設定樹莓派的腳位
 ```bash
 buttonPin = 8
 GPIO.setwarnings(False)
@@ -288,7 +288,7 @@ GPIO.setmode(GPIO.BOARD)  # GPIO.BOARD 使用物理腳位編號；GPIO.BCM 使�
 GPIO.setup(buttonPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # 設定按鈕為輸入並啟用上拉電阻，按下按鈕時接地
 ```
 
-4. 串接按鈕
+4. 串接按鈕  
 ![pin圖](https://github.com/Eddie114114/IOT_final/blob/main/picture/pi)
 
 依照程式設定串接杜邦線，一條接到 `GPIO.BOARD` 編號8，另一條接到 `GPIO.BOARD` 編號6(接地)，兩條線的另外一端接到輕觸按鈕
