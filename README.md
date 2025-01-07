@@ -194,7 +194,7 @@ OPENAI_API_KEY = your_api_key
 可以在 `system role` 設定阿鵝的人設(或鵝設?)和回答方式、範圍等等  
 此處設定阿鵝根據用戶提供的情緒和文字生成回應，如果超出能力範圍，阿鵝會回應 "呱呱，我是笨鵝"
 
->#### google gemini
+>#### 使用 google gemini
 >如果你的環境使用 `python3.9` ，可以使用 `google gemini` 作為語言模型
 >1. 登入Google帳號並取得API
 >[https://ai.google.dev/gemini-api/docs/api-key?hl=zh-tw](https://ai.google.dev/gemini-api/docs/api-key?hl=zh-tw)
@@ -226,7 +226,7 @@ OPENAI_API_KEY = your_api_key
 >
 >llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash-latest", google_api_key=config["Gemini"]["API_KEY"])
 >```
->- 更改gptResponse函式  
+>- 更改 `gptResponse` 函式  
 >```bash
 >if emotion is None or user_input is None:
 >        return "呱呱，我是笨鵝"
@@ -249,29 +249,48 @@ OPENAI_API_KEY = your_api_key
 
 ## Step6: 整合函式
 
-### 使用 `main.py` 進行多執行緒處理
-- 使用 `threading` 模組讓語音輸入與情緒檢測能並行執行
-- 兩個執行緒完成後才生成回應
+###  `main.py` 用於整合函式並進行多執行緒處理
+確保以上檔案名稱和和位置正確  
 
-### 整合流程如下
-1. 使用語音辨識接收使用者語音
-2. 同時進行情緒偵測
-3. 將二者結果傳遞至 GPT 模型生成回應
-4. 將回應轉換為語音並播放
+如果有更動檔案名稱或其中函式名稱，請更正  
+```bash
+from 檔案名稱 import 函式
+```
+
+使用 `thread` 進行多執行緒處理  
+```bash
+import threading
+```
+
+>#### 整合流程如下
+>1. 使用語音辨識接收使用者語音
+>2. 同時進行情緒偵測
+>3. 將二者結果傳遞至 語言模型生成回應
+>4. 將回應轉換為語音
+>5. 播放語音
 
 ---
 
 ## Step7: 設定按鈕
 
-### 功能設計
-1. **按鈕事件觸發**
-   - 偵測按鈕按下時執行指定程式。
+### 使用 `button.py` 
+1. 確定 `main.py` 以及 `letsPlay.mp3` 檔案名稱和和位置正確
 
-2. **音效提醒**
-   - 當程式啟動時，播放音效文件 letsPlay.mp3 以提醒用戶
+2. 安裝RPi.GPIO
+```bash
+pip install RPi.GPIO
+```
 
-3. **防抖處理**
-   - 避免按鈕重複觸發。
+4. 設定樹莓派的腳位
+```bash
+buttonPin = 8
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BOARD)  # GPIO.BOARD 使用物理腳位編號；GPIO.BCM 使用 GPIO 控制器的腳位編號
+GPIO.setup(buttonPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # 設定按鈕為輸入並啟用上拉電阻，按下按鈕時接地
+```
+
+4. 串接按鈕
+
 
 ---
 
