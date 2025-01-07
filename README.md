@@ -296,12 +296,17 @@ GPIO.setup(buttonPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)  # 設定按鈕為輸�
 ---
 
 ## 可以改善的點
-- 優化語音辨識準確度。
-- 提升情緒分類模型的準確性。
-- 減少硬體設備的延遲。
+- FER資料集中表情明顯，因此訓練出的模型要臉部表情要夠誇張才會辨識出情緒，細微的情緒會被歸類為中性
+- 語音輸出是機械化的聲音，需要改成更情緒化的聲音
+- 硬體設備的延遲
 
 ---
 
 ## 參考資料
 - (https://hackmd.io/HV6hQ2PHSiWlrRsfxC10SA)
 - (https://www.tinkercad.com/dashboard)
+- (https://www.youtube.com/watch?v=j6i4YTFlYRA&t=775s)
+- (https://github.com/bnsreenu/python_for_microscopists)
+- (https://ithelp.ithome.com.tw/articles/10301640)
+- (https://ithelp.ithome.com.tw/articles/10302441)
+- (https://boyie-chen.medium.com/%E7%94%A8raspberry-pi%E7%8E%A9%E6%B7%B1%E5%BA%A6%E5%AD%B8%E7%BF%92-1-%E6%8A%8Atensorflow2-3%E5%8F%8Akeras%E5%AE%89%E8%A3%9D%E5%88%B0pi4%E4%B8%8A%E5%90%A7-952900ef1c58)
