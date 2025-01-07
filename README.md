@@ -219,14 +219,14 @@ OPENAI_API_KEY = your_api_key
 >```
 >
 >4. 更改 `answerLLM.py`
->在開頭加上  
+>- 在開頭加上  
 >```bash
 >config = ConfigParser()
 >config.read("config.ini")
 >
 >llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash-latest", google_api_key=config["Gemini"]["API_KEY"])
 >```
->更改gptResponse函式  
+>- 更改gptResponse函式  
 >```bash
 >if emotion is None or user_input is None:
 >        return "呱呱，我是笨鵝"
