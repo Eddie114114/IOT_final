@@ -58,6 +58,27 @@
 #### opencv 安裝參考此網址
 [https://hackmd.io/HV6hQ2PHSiWlrRsfxC10SA](https://hackmd.io/HV6hQ2PHSiWlrRsfxC10SA)  
 
+1. 首先安裝CMack  
+```bash
+cd ~/
+wget https://github.com/Kitware/CMake/releases/download/v3.14.4/cmake-3.14.4.tar.gz
+tar xvzf cmake-3.14.4.tar.gz
+cd ~/cmake-3.14.4
+./bootstrap
+make -j4
+sudo make install
+```
+2. 安裝OpenCV(需要跑一段時間)
+```bash
+cd ~/
+sudo apt install git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev libatlas-base-dev python3-scipy
+git clone --depth 1 --branch 4.5.2-openvino https://github.com/opencv/opencv.git
+cd opencv && mkdir build && cd build
+cmake –DCMAKE_BUILD_TYPE=Release –DCMAKE_INSTALL_PREFIX=/usr/local ..
+make -j4
+sudo make install
+``` 
+
 #### tensorflow 安裝
 tensorflow 可能無法使用 pip 安裝，從以下網址下載 python 版本對應的 wheel：
 [https://github.com/lhelontra/tensorflow-on-arm/releases](https://github.com/lhelontra/tensorflow-on-arm/releases)  
@@ -158,6 +179,8 @@ OpenCV 提供多種預訓練的圖形辨識模型，此處使用臉部辨識模�
 ## Step5: 串接語言模型
 
 ### 前置準備，使用 GPT-3.5
+使用 `answerLLM.py`   
+
 1. 於 OpenAI 官網申請 API key ，可在 Usage 頁面查看使用量：
 [https://platform.openai.com/settings/organization/api-keys](https://platform.openai.com/settings/organization/api-keys)    
 
@@ -172,7 +195,60 @@ OPENAI_API_KEY = your_api_key
 此處設定阿鵝根據用戶提供的情緒和文字生成回應，如果超出能力範圍，阿鵝會回應 "呱呱，我是笨鵝"
 
 >#### google gemini
+>如果你的環境使用 `python3.9` ，可以使用 `google gemini` 作為語言模型
+>1. 登入Google帳號並取得API
+>[https://ai.google.dev/gemini-api/docs/api-key?hl=zh-tw](https://ai.google.dev/gemini-api/docs/api-key?hl=zh-tw)
+
+>2. 安裝以下
+>```bash
+>pip install configparser
+>pip install langchain
+>pip install openai
+>pip install langchain-openai
+>pip install langchain-community
+>pip install faiss-cpu
+>pip install tiktoken
+>pip install pillow
+>pip install langchain-google-genai
+>```
 >
+>3. 建立 `config.ini` 並設定
+>```bash
+>[Gemini]
+>API_KEY = your_api_key
+>```
+>
+>4. 更改 `answerLLM.py`
+>```bash
+>config = ConfigParser()
+>config.read("config.ini")
+>
+>llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash-latest", google_api_key=config["Gemini"]["API_KEY"])
+>```
+>更改gptResponse函式
+>```bash
+>if emotion is None or user_input is None:
+        return "呱呱，我是笨鵝"
+
+    system_message = (
+        f"你是一隻鵝，精通心理學，善於傾聽，個性溫暖且幽默。"
+        f"用戶現在感到{emotion}，請給予簡短的回應來應對用戶的情緒，"
+        f"只有1句話，不超過十五字，不要表情符號。"
+        f"如果用戶的問題與你的專業無關，只能回答'呱呱，我是笨鵝'，不能有其他額外的回應。"
+    )
+
+    try:
+        # 使用 Gemini 模型生成响应
+        response = gemini.generate_text(
+            prompt=f"{system_message}\n用戶: {user_input}\n鵝:",
+            model="models/chat-bison-001",  # 请根据实际可用的模型名称进行替换
+            temperature=1.5,
+            max_output_tokens=50  # 设置生成的最大字数，可根据需要调整
+        )
+        return response.result
+    except Exception as e:
+        return f"抱歉，生成回應時出現錯誤：{e}"
+>```
 
 ---
 
